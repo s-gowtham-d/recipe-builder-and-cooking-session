@@ -9,9 +9,11 @@ import IngredientsSection from '../components/RecipeBuilder/IngredientsSection'
 import StepsSection from '../components/RecipeBuilder/StepsSection'
 import RecipeSummary from '../components/RecipeBuilder/RecipeSummary'
 import type { Difficulty, Ingredient, RecipeStep, Recipe } from '../types/recipeTypes'
+import { useNavigate } from 'react-router-dom'
 
 export default function Create() {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState('')
     const [difficulty, setDifficulty] = useState<Difficulty>('Easy')
@@ -130,12 +132,13 @@ export default function Create() {
 
         setSnackbar({ open: true, message: '✅ Recipe saved successfully!', severity: 'success' })
 
-        setTimeout(() => {
-            setTitle('')
-            setDifficulty('Easy')
-            setIngredients([])
-            setSteps([])
-        }, 1000)
+        // setTimeout(() => {
+        setTitle('')
+        setDifficulty('Easy')
+        setIngredients([])
+        setSteps([])
+        navigate('/')
+        // }, 1000)
     }
 
     return (
