@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Container, Box, Snackbar, Alert } from '@mui/material'
+import { Container, Snackbar, Alert } from '@mui/material'
 import { useAppSelector, useAppDispatch } from '../app/hooks'
 import { toggleFavorite } from '../features/recipesSlice'
 import {
