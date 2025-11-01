@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
+import counterReducer from '../features/counterSlice'
+import recipesReducer from '../features/recipesSlice'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist'
 
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     counter: counterReducer,
+    recipes: recipesReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
