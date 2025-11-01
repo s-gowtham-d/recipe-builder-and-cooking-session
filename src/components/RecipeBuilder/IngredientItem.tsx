@@ -29,7 +29,7 @@ export default function IngredientItem({ ingredient, index, onUpdate, onRemove }
                         onChange={(e) => onUpdate(ingredient.id, 'quantity', +e.target.value)}
                         sx={{ width: 120 }}
                         size="small"
-                        inputProps={{ min: 0.1, step: 0.1 }}
+                        inputProps={{ step: 1 }}
                     />
                     <TextField
                         label="Unit"

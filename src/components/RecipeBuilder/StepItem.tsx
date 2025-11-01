@@ -121,7 +121,7 @@ export default function StepItem({ step, index, totalSteps, ingredients, onUpdat
 
                 {step.type === 'instruction' && ingredients.length > 0 && (
                     <FormControl fullWidth>
-                        <InputLabel>Related Ingredients</InputLabel>
+                        <InputLabel>Related Ingredients *</InputLabel>
                         <Select
                             multiple
                             value={step.ingredientIds || []}

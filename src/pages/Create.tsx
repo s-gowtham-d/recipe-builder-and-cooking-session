@@ -93,9 +93,9 @@ export default function Create() {
         if (steps.some(s => s.type === 'cooking' && !s.cookingSettings)) {
             return 'Cooking steps must have temperature and speed settings'
         }
-        if (steps.some(s => s.type === 'instruction' && (!s.ingredientIds || s.ingredientIds.length === 0))) {
-            return 'Instruction steps must have at least one ingredient'
-        }
+        // if (steps.some(s => s.type === 'instruction' && (!s.ingredientIds || s.ingredientIds.length === 0))) {
+        //     return 'Instruction steps must have at least one ingredient'
+        // }
         return null
     }
 
