@@ -1,35 +1,34 @@
-import './App.css'
-import viteLogo from '/vite.svg'
-import reactLogo from './assets/react.svg'
-import { useSelector, useDispatch } from 'react-redux'
-import type { RootState } from './app/store'
-import { increment, decrement, reset } from './features/counter/counterSlice'
+import { Routes, Route, Link } from 'react-router-dom'
+import Recipes from './pages/Recipes'
+import { Create } from './pages/Create'
+import { Cook } from './pages/Cook'
+import NotFound from './pages/NoteFound'
+
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <div>
+      <nav
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '20px',
+          padding: '10px',
+          background: '#f0f0f0',
+        }}
+      >
+        <Link to="/">Home</Link>
+        <Link to="/create">create</Link>
+        <Link to="/cook/:id">Cook</Link>
+      </nav>
 
-      <div className="card">
-        <p>Count is {count}</p>
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
-          <button onClick={() => dispatch(increment())}>Increment</button>
-          <button onClick={() => dispatch(decrement())}>Decrement</button>
-          <button onClick={() => dispatch(reset())}>Reset</button>
-        </div>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Recipes />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/cook/:id" element={<Cook />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
   )
 }
 
