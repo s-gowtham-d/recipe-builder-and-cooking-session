@@ -11,7 +11,7 @@ interface RecipeHeaderProps {
 
 export default function RecipeHeader({ title, difficulty, onTitleChange, onDifficultyChange }: RecipeHeaderProps) {
     return (
-        <Paper elevation={0} sx={{ p: 3, mb: 3, bgcolor: 'gray', color: 'white', borderRadius: 3 }}>
+        <Paper elevation={0} sx={{ p: 3, mb: 3, bgcolor: 'primary.main', color: 'white', borderRadius: 3 }}>
             <Stack direction="row" alignItems="center" spacing={2} mb={3}>
                 <Restaurant sx={{ fontSize: 40 }} />
                 <Typography variant="h4" fontWeight="bold">

@@ -3,6 +3,7 @@ import counterReducer from '../features/counterSlice'
 import recipesReducer from '../features/recipesSlice'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist'
+import sessionReducer from '../features/sessionSlice'
 
 const persistConfig = {
     key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     counter: counterReducer,
     recipes: recipesReducer,
+    session: sessionReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

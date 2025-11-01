@@ -15,14 +15,12 @@ const recipesSlice = createSlice({
     name: 'recipes',
     initialState,
     reducers: {
-        // Hydrate from localStorage
         hydrateRecipes: (state, action: PayloadAction<Recipe[]>) => {
             state.items = action.payload
             state.isHydrated = true
         },
         addRecipe: (state, action: PayloadAction<Recipe>) => {
             state.items.push(action.payload)
-            // Persist to localStorage
             localStorage.setItem('recipes:v1', JSON.stringify(state.items))
         },
         updateRecipe: (state, action: PayloadAction<Recipe>) => {

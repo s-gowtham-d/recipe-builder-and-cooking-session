@@ -18,18 +18,17 @@ export default function Recipes() {
     const [selectedDifficulties, setSelectedDifficulties] = useState<Difficulty[]>([])
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
-    useEffect(() => {
-        const saved = localStorage.getItem('recipes:v1')
-        if (saved) {
-            try {
-                const parsed: Recipe[] = JSON.parse(saved)
-                // You might want to dispatch these to Redux if needed
-                // For now, we'll rely on Redux as the source of truth
-            } catch (error) {
-                console.error('Failed to parse recipes from localStorage:', error)
-            }
-        }
-    }, [])
+    // useEffect(() => {
+    //     const saved = localStorage.getItem('recipes:v1')
+    //     if (saved) {
+    //         try {
+    //             const parsed: Recipe[] = JSON.parse(saved)
+
+    //         } catch (error) {
+    //             console.error('Failed to parse recipes from localStorage:', error)
+    //         }
+    //     }
+    // }, [])
 
     const filteredAndSortedRecipes = useMemo(() => {
         let result = [...recipes]
@@ -120,29 +119,7 @@ export default function Recipes() {
                             />
                         </Grid>
                     ))}
-                    {filteredAndSortedRecipes.map((recipe) => (
-                        <Grid key={recipe.id}>
-                            <RecipeCard
-                                recipe={recipe}
-                                onToggleFavorite={handleToggleFavorite}
-                            />
-                        </Grid>
-                    ))} {filteredAndSortedRecipes.map((recipe) => (
-                        <Grid key={recipe.id}>
-                            <RecipeCard
-                                recipe={recipe}
-                                onToggleFavorite={handleToggleFavorite}
-                            />
-                        </Grid>
-                    ))}
-                    {filteredAndSortedRecipes.map((recipe) => (
-                        <Grid key={recipe.id}>
-                            <RecipeCard
-                                recipe={recipe}
-                                onToggleFavorite={handleToggleFavorite}
-                            />
-                        </Grid>
-                    ))}
+
                 </Grid>
             )}
 

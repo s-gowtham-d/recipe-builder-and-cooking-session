@@ -93,7 +93,7 @@ export default function StepItem({ step, index, totalSteps, ingredients, onUpdat
                         <TextField
                             label="Temperature (°C)"
                             type="number"
-                            value={step.cookingSettings?.temperature || 40}
+                            value={step.cookingSettings?.temperature ?? ""}
                             onChange={(e) => onUpdate(step.id, 'cookingSettings', {
                                 ...step.cookingSettings,
                                 temperature: +e.target.value,
@@ -106,7 +106,7 @@ export default function StepItem({ step, index, totalSteps, ingredients, onUpdat
                         <TextField
                             label="Speed (1-5)"
                             type="number"
-                            value={step.cookingSettings?.speed || 1}
+                            value={step.cookingSettings?.speed ?? ""}
                             onChange={(e) => onUpdate(step.id, 'cookingSettings', {
                                 ...step.cookingSettings,
                                 temperature: step.cookingSettings?.temperature || 40,
@@ -135,11 +135,20 @@ export default function StepItem({ step, index, totalSteps, ingredients, onUpdat
                                 </Box>
                             )}
                         >
-                            {ingredients.map((ing) => (
+                            {/* {ingredients.map((ing) => (
                                 <MenuItem key={ing.id} value={ing.id}>
                                     {ing.name}
                                 </MenuItem>
-                            ))}
+                            ))} */}
+
+                            {ingredients.map((ing) => {
+                                if (ing.name.trim() === '') return null;
+                                return (
+                                    <MenuItem key={ing.id} value={ing.id}>
+                                        {ing.name}
+                                    </MenuItem>
+                                )
+                            })}
                         </Select>
                     </FormControl>
                 )}

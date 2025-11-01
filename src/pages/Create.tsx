@@ -83,6 +83,9 @@ export default function Create() {
     const validate = (): string | null => {
         if (title.trim().length < 3) return 'Title must be at least 3 characters'
         if (ingredients.length < 1) return 'Add at least one ingredient'
+        if (ingredients.some(ing => !ing.name || ing.name.trim() === '')) {
+            return 'All ingredients must have a name'
+        }
         if (steps.length < 1) return 'Add at least one step'
         if (steps.some(s => s.durationMinutes <= 0)) return 'All steps must have duration > 0'
         if (steps.some(s => s.type === 'cooking' && !s.cookingSettings)) {
@@ -101,12 +104,20 @@ export default function Create() {
             return
         }
 
+        const validIngredients = ingredients.filter(ing => ing.name && ing.name.trim() !== '')
+
+        const validIngredientIds = new Set(validIngredients.map(i => i.id))
+        const cleanedSteps = steps.map(step => ({
+            ...step,
+            ingredientIds: step.ingredientIds?.filter(id => validIngredientIds.has(id))
+        }))
+
         const recipe: Recipe = {
             id: uuidv4(),
             title,
             difficulty,
-            ingredients,
-            steps,
+            ingredients: validIngredients,
+            steps: cleanedSteps,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
         }
